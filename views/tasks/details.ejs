@@ -1,0 +1,37 @@
+<html lang="en">
+    <%- include("../partials/head.ejs") %>
+    <body>
+        <%- include("../partials/nav.ejs") %>
+        <div class="details content">
+            <h2 style="margin-bottom: 0px;"><%= tasks.description %></h2>
+            <h3>Completed: <%= tasks.completed %></h3><br>
+            <a class="delete" data-doc="<%= tasks._id %>">
+                <img src = "/trashcan.svg" alt = "delete icon">
+            </a>
+            <% if (tasks.completed === "false") { %>
+            <h3>update task completion status:</h3>
+            <form action="/<%= tasks._id %>" method="POST">
+                <button type="submit" class="update"> 
+                    <strong>completed.</strong>
+                </button>   
+            </form> 
+            <% } else { %>
+            <% } %>
+        </div>
+        <script>
+            console.log("delete script running");
+            const trashcan = document.querySelector('a.delete');
+            console.log("transhcan defined");
+            trashcan.addEventListener('click', (e) => {
+                const endpoint = `/${trashcan.dataset.doc}`;
+                console.log("endpoint run");
+                fetch(endpoint, {
+                    method: 'DELETE',
+                })
+                .then(response => response.json())
+                .then(data => window.location.href = data.redirect)
+                .catch(err => console.log(err));
+            });
+        </script>
+    </body>
+</html>

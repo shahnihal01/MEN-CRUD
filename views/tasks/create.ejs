@@ -1,0 +1,16 @@
+<html lang="en">
+    <%- include("../partials/head.ejs")%>
+    <body>
+        <%- include("../partials/nav.ejs")%>
+        <div class="create-task content">
+            <form action="/" method="POST">
+              <label for="description">Task Description:</label>
+              <input type="text" id="description" name="description" required><br>
+              <label for="completed">Completed?:</label><br>
+              True<input type="radio" id="completed" name="completed" class="completed" value="true"><br>
+              False<input type="radio" id="completed" name="completed" class="completed" value="false"><br>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+    </body>
+</html>
